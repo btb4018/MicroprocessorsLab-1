@@ -10,6 +10,11 @@ start:
 	movwf	TRISD, A
 	movlb	0x0f
 	bsf RDPU
+	movlw	0xff
+	movwf	0x20
+	movwf	0x21
+	movwf	0x22
+	movwf	0x23
 	movlw 	0x0
 	movwf	TRISC, A	    ; Port C all outputs
 	bra 	test
@@ -27,21 +32,21 @@ test:
 	
 	
 delaya:	call	delayb	
-	decfsz	0xff, A	; decrement until zero
+	decfsz	0x20, A	; decrement until zero
 	bra	delaya
 	return
 	
 delayb:	call	delayc	
-	decfsz	0xff, A	; decrement until zero
+	decfsz	0x21, A	; decrement until zero
 	bra	delayb
 	return	
 	
 delayc:	call	delayd	
-	decfsz	0xff, A	; decrement until zero
+	decfsz	0x22, A	; decrement until zero
 	bra	delayc
 	return
 
-delayd:	decfsz	0xff, A	; decrement until zero
+delayd:	decfsz	0x23, A	; decrement until zero
 	bra delayd
 	return
 
